@@ -16,43 +16,24 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText et_message;
-    Button btn_display;
-    Button btn_save;
-    Button btn_clear;
-    TextView tv_display;
     FileOutputStream fos;
     FileInputStream fis;
+    EditText EtMess;
+    Button BtDis;
+    Button BtSav;
+    Button BtCle;
+    TextView TvDis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        et_message = findViewById(R.id.etmessage);
-        btn_display = findViewById(R.id.btndisplay);
-        btn_save = findViewById(R.id.btnsave);
-        btn_clear = findViewById(R.id.btnclear);
-        tv_display = findViewById(R.id.tvmessage);
-    }
-
-    public void saveStorage (View view) {
-        String message = et_message.getText().toString();
-        try {
-            fos = openFileOutput("output.txt", Context.MODE_PRIVATE);
-            fos.write(message.getBytes());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-        Toast.makeText(this, "Message saved!", Toast.LENGTH_SHORT).show();
+        EtMess = findViewById(R.id.EtMess);
+        BtDis = findViewById(R.id.BtDisp);
+        BtSav = findViewById(R.id.BtSave);
+        BtCle = findViewById(R.id.BtClea);
+        TvDis = findViewById(R.id.TvMess);
     }
 
     public void displayStorage (View view) {
@@ -69,10 +50,29 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e){
             e.printStackTrace();
         }
-        tv_display.setText(buffer.toString());
+        TvDis.setText(buffer.toString());
     }
 
     public void clear (View view) {
-        et_message.setText("");
+        EtMess.setText("");
+    }
+
+    public void saveStorage (View view) {
+        String message = EtMess.getText().toString();
+        try {
+            fos = openFileOutput("output.txt", Context.MODE_PRIVATE);
+            fos.write(message.getBytes());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+        Toast.makeText(this, "Message has been saved!", Toast.LENGTH_SHORT).show();
     }
 }

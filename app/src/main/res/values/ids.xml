@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btndisplay" type="id" />
+    <item name="btnsave" type="id" />
+    <item name="btnclear" type="id" />
+    <item name="BtDisp" type="id" />
+    <item name="BtSave" type="id" />
+    <item name="BtClea" type="id" />
+</resources>
